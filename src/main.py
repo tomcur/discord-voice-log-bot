@@ -61,7 +61,16 @@ async def on_voice_state_update(member_before, member_after):
         await client.send_message(channel, msg)
     except:
         # No message could be sent to the channel; force refresh the channel cache and try again
-        find_channel(server, refresh = True)
-        await client.send_message(channel, msg)
+        channel = find_channel(server, refresh = True)
+        if channel == None:
+            # The channel could not be found
+            print("Error: channel #%s does not exist on server %s." % (config.CHANNEL_NAME, server))
+        else:
+            # Try sending a message again
+            try:
+                await client.send_message(channel, msg)
+            except discord.DiscordException as exception:
+                # Print the exception
+                print("Error: no message could be sent to channel #%s on server %s. Exception: %s" % (config.CHANNEL_NAME, server, exception))
 
 client.run(config.BOT_TOKEN)
