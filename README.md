@@ -9,7 +9,7 @@ To install requirements:
 ## Configuration
 You might want to create a new bot on Discord (i.e., create an application at https://discordapp.com/developers/applications/me/ and turn it into a bot).
 
-Configure the bot in `src/config.py`.
+Configure the bot by renaming `src/config.example.py` to `src/config.py`, and edit the config.
 
 ## Running
 Run the bot by executing:
