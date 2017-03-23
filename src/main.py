@@ -44,6 +44,10 @@ async def on_voice_state_update(member_before, member_after):
     voice_channel_before = member_before.voice_channel
     voice_channel_after = member_after.voice_channel
     
+    if voice_channel_before == voice_channel_after:
+        # No change
+        return
+    
     if voice_channel_before == None:
         # The member was not on a voice channel before the change
         msg = "%s joined voice channel _%s_" % (member_after.mention, voice_channel_after.name)
